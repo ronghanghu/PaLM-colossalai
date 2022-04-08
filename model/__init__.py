@@ -4,15 +4,42 @@ from colossalai.core import global_context as gpc
 
 
 def palm_small():
-    return Parallel_PaLM(num_tokens=50304, dim=768, depth=12, dim_head=64, heads=12, ff_mult=4)
+    return Parallel_PaLM(
+        num_tokens=50304,
+        dim=768,
+        depth=12,
+        dim_head=64,
+        num_heads=12,
+        ff_mult=4,
+        use_grad_checkpoint=False,
+        use_act_offload=False,
+    )
 
 
 def palm_8b():
-    return Parallel_PaLM(num_tokens=50304, dim=4096, depth=32, dim_head=256, heads=16, ff_mult=4)
+    return Parallel_PaLM(
+        num_tokens=50304,
+        dim=4096,
+        depth=32,
+        dim_head=256,
+        num_heads=16,
+        ff_mult=4,
+        use_grad_checkpoint=True,
+        use_act_offload=True,
+    )
 
 
 def palm_62b():
-    return Parallel_PaLM(num_tokens=50304, dim=8192, depth=64, dim_head=256, heads=32, ff_mult=4)
+    return Parallel_PaLM(
+        num_tokens=50304,
+        dim=8192,
+        depth=64,
+        dim_head=256,
+        num_heads=32,
+        ff_mult=4,
+        use_grad_checkpoint=True,
+        use_act_offload=True,
+    )
 
 
 def build_model():
